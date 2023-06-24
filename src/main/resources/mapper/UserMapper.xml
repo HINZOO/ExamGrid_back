@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gridvue.backend.mapper.UserMapper">
+
+  <insert id="insertOne"  parameterType="UserDto">
+    INSERT INTO users (u_no,u_id,uname,gender,post_time,nation,city) VALUES(u_no.NEXTVAL,#{u_id},#{uname},#{gender},SYSDATE,#{nation},#{city})
+  </insert>
+
+  <delete id="deleteOne">
+    DELETE FROM users WHERE u_no=#{u_no}    
+  </delete>
+
+
+  <update id="updateOne"  parameterType="UserDto">
+    UPDATE users SET u_id=#{u_id},uname=#{uname},gender=#{gender},nation=#{nation},city=#{city} WHERE u_no=#{u_no}   
+  </update>
+
+
+  <select id="findByUno">
+    SELECT * FROM users WHERE u_no=#{u_no}   
+  </select>
+  
+  <select id="findByUId">
+    SELECT * FROM users WHERE u_id=#{u_id}   
+  </select>
+  
+
+
+  <select id="findByAll">
+    SELECT * FROM users 
+      WHERE 1=1
+      <if test="uname != null and !uname.isEmpty()">
+          AND uname LIKE '%' || #{uname} || '%'
+      </if>
+      <if test="u_id != null and !u_id.isEmpty()">
+          AND u_id LIKE '%' || #{u_id} || '%'
+      </if>
+      <if test="gender != null and !gender.isEmpty()">
+          AND gender=#{gender}
+      </if>
+      <if test="nation != null and !nation.isEmpty()">
+          AND nation=#{nation}
+      </if>
+      <if test="city != null and !city.isEmpty()">
+          AND city=#{city}
+      </if>
+      <if test="toTime != null and !toTime.isEmpty() and fromTime != null and !fromTime.isEmpty()">
+          AND (post_time>=#{toTime} AND #{fromTime}>=post_time)
+      </if>
+      ORDER BY post_time DESC
+  </select>
+
+</mapper>
