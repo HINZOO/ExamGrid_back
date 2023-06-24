@@ -15,6 +15,7 @@ public class UserDto {
   private String post_time;
   private String nation;
   private String city;
+  //private List<String> city;
 
   private String toTime;
   private String fromTime;

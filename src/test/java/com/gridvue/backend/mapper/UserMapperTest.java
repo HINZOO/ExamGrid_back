@@ -41,7 +41,7 @@ public class UserMapperTest {
     user.setUname("테스트");
     user.setGender("W");
     user.setNation("미국");
-    user.setCity("뉴욕");
+    user.setCity("LA");
     int insert=userMapper.insertOne(user);
     System.out.println(user+"등록"+insert);
   }
@@ -54,7 +54,7 @@ public class UserMapperTest {
     user.setUname("테스트22");
     user.setGender("M");
     user.setNation("한국");
-    user.setCity("서울");
+   // user.setCity("서울");
     int updateOne = userMapper.updateOne(user);
     System.out.println("수정"+updateOne+"//"+userMapper.findByUno(21));
   }

@@ -39,12 +39,16 @@ public class UserController {
 
   
   @PostMapping("/api/insert")
-  public int insertUser(@RequestBody UserDto userDto){
-    int insert= userService.register(userDto);
+  public int insertUser(@RequestBody UserDto userDto
+                        ){
+    //List<String> cityList = userDto.getCity();
+   // String cities = String.join(",", cityList);
+    int insert = userService.register(userDto);
     return insert;
-  }
+}
   @PostMapping("/api/update")
-   public int updateUser(@RequestBody UserDto userDto){
+   public int updateUser(@RequestBody UserDto userDto
+                        ){
     int update= userService.modify(userDto);
     return update;
   }
