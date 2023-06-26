@@ -54,5 +54,31 @@ public class UserServiceImpl implements UserService{
     UserDto idCheck=userMapper.findByUId(u_id);
     return idCheck;
   }
+
+  @Override
+  public List<UserDto> list1List() {
+    List<UserDto> list= userMapper.searchByLink1();
+    return list;
+  }
+
+  @Override
+  public List<UserDto> link1List(UserDto userDto) {
+    List<UserDto> list= userMapper.searchByLink1(userDto);
+    return list;
+  }
+
+  @Override
+  public int link1Modify(UserDto userDto) {
+    int link1Modify=userMapper.updateLink1(userDto);
+    return link1Modify;
+  }
+
+  @Override
+  public int link2Modify(UserDto userDto) {
+    int link2Modify=userMapper.updateLink2(userDto);
+    return link2Modify;
+  }
+
+
   
 }

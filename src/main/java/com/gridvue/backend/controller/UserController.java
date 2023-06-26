@@ -30,6 +30,17 @@ public class UserController {
     List<UserDto> users= userService.list(userDto);
     return users;
   };
+  
+  @GetMapping("/api/link1/list")
+  public List<UserDto> getListByLink1(Model model) {
+    List<UserDto> users= userService.list1List();
+    return users;
+  };
+  @PostMapping("/api/link1/list")
+  public List<UserDto> SearchListByLink1(@RequestBody UserDto userDto) {
+    List<UserDto> users= userService.link1List(userDto);
+    return users;
+  };
 
   @PostMapping("/api/user")
   public UserDto searchUser(@RequestBody UserDto userDto) {
@@ -52,6 +63,21 @@ public class UserController {
     int update= userService.modify(userDto);
     return update;
   }
+  
+  @PostMapping("/api/link1/update")
+   public int updateUserLink1(@RequestBody UserDto userDto
+                        ){
+    int update= userService.link1Modify(userDto);
+    return update;
+  }
+
+  @PostMapping("/api/link2/update")
+   public int updateUserLink2(@RequestBody UserDto userDto
+                        ){
+    int update= userService.link2Modify(userDto);
+    return update;
+  }
+
   @PostMapping("/api/delete")
   public int deleteUser(@RequestBody String[] uNos) {
     int deleteUser = 0;

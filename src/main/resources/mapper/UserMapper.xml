@@ -15,6 +15,13 @@
     UPDATE users SET u_id=#{u_id},uname=#{uname},gender=#{gender},nation=#{nation},city=#{city} WHERE u_no=#{u_no}   
   </update>
 
+  <update id="updateLink1"  parameterType="UserDto">
+    UPDATE users SET u_id=#{u_id},uname=#{uname},age=#{age},city=#{city},ward=#{ward} WHERE u_no=#{u_no}   
+  </update>
+
+  <update id="updateLink2"  parameterType="UserDto">
+    UPDATE users SET job=#{job},hobby=#{hobby},ismarried=#{ismarried},foodcate=#{foodcate},foodtype=#{foodtype} WHERE u_no=#{u_no}   
+  </update>
 
   <select id="findByUno">
     SELECT * FROM users WHERE u_no=#{u_no}   
@@ -48,6 +55,31 @@
           AND (post_time>=#{toTime} AND #{fromTime}>=post_time)
       </if>
       ORDER BY post_time DESC
+  </select>
+
+  
+  <select id="searchByLink1">
+      SELECT * FROM users 
+    WHERE 1=1
+    <if test="uname != null and !uname.isEmpty()">
+        AND uname LIKE '%' || #{uname} || '%'
+    </if>
+    <if test="u_id != null and !u_id.isEmpty()">
+        AND u_id LIKE '%' || #{u_id} || '%'
+    </if>
+    <if test="age != null and age > 0">
+        AND age=#{age}
+    </if>
+    <if test="city != null and !city.isEmpty()">
+        AND city=#{city}
+    </if>
+    <if test="ward != null and !ward.isEmpty()">
+        AND ward=#{ward}
+    </if>
+    <if test="toTime != null and !toTime.isEmpty() and fromTime != null and !fromTime.isEmpty()">
+        AND (post_time>=#{toTime} AND #{fromTime}>=post_time)
+    </if>
+    ORDER BY post_time DESC
   </select>
 
 </mapper>

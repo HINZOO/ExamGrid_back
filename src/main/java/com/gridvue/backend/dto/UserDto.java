@@ -11,11 +11,17 @@ public class UserDto {
   private int u_no;
   private String u_id;
   private String uname;
-  private String gender;
+  private String gender;//boolean
   private String post_time;
   private String nation;
   private String city;
-  //private List<String> city;
+  private int age;
+  private String ward;//구
+  private String job;
+  private String hobby;
+  private String foodcate;
+  private String foodtype;
+  private String ismarried;// boolean
 
   private String toTime;
   private String fromTime;
